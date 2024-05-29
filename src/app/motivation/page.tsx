@@ -6,5 +6,5 @@ export const metadata: Metadata = {
 };
 
 export default function MotivationPage() {
-  return <div>MotivationPage</div>;
+  return <div>MotivationPage It&apos;s</div>;
 }

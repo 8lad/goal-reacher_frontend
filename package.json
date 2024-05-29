@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node  envChecker.mjs && next dev -p 3200",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 3200",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "prepare": "husky"
@@ -13,6 +13,7 @@
   "dependencies": {
     "axios": "^1.7.2",
     "classnames": "^2.5.1",
+    "dotenv": "^16.4.5",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18"
@@ -33,4 +34,3 @@
     "typescript": "^5"
   }
 }
-
