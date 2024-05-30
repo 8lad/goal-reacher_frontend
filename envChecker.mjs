@@ -1,7 +1,7 @@
 import { configDotenv } from 'dotenv';
 configDotenv();
 
-const envNames = ['BASE_ENDPOINT'];
+const envNames = ['BASE_ENDPOINT', 'NEXT_PUBLIC_BASE_ENDPOINT'];
 
 const missedEnvVariables = envNames.filter(envVariable => !process.env[envVariable] || process.env[envVariable].trim() === '');
 
