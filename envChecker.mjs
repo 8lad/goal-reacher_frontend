@@ -10,4 +10,4 @@ if (missedEnvVariables.length > 0) {
   process.exit(1)
 }
 
-
+console.info(`*** All env variables are loaded ***`);

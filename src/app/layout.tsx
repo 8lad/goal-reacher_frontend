@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { roboto_condensed } from '@/components/shared/fonts';
 import '../styles/globals.scss';
-
-const inter = Inter({ subsets: ['latin'] });
+import classNames from 'classnames';
 
 export const metadata: Metadata = {
   title: 'Goal reacher app',
@@ -16,8 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={classNames(roboto_condensed.className)}>{children}</body>
     </html>
   );
 }
-
