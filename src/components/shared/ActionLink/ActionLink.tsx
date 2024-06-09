@@ -1,7 +1,7 @@
-import { ButtonType } from '@/types/generalTypes';
 import classNames from 'classnames';
 import Link from 'next/link';
 import { LINK_STYLES } from './ActionLink.utils';
+import { ButtonType } from '@/constants/generalConstants';
 
 interface ActionLinkProps {
   text: string;

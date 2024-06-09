@@ -1,6 +1,6 @@
-import { ButtonType } from '@/types/generalTypes';
 import classNames from 'classnames';
 import { BUTTON_STYLES } from './ActionButton.utils';
+import { ButtonType } from '@/constants/generalConstants';
 
 interface ActionButtonProps {
   text: string;
