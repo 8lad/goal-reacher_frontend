@@ -16,7 +16,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={classNames(roboto_condensed.className, 'general-gradient')}>
+      <body
+        className={classNames(
+          roboto_condensed.className,
+          'general-gradient flex flex-col min-h-screen',
+        )}
+      >
         <MainHeader />
         {children}
       </body>
