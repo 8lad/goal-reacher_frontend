@@ -14,4 +14,20 @@ export enum Routes {
   SingleGoal = '/goal',
   UserPage = '/user',
   Login = '/login',
+  Motivation = '/motivation',
 }
+
+export const naviationLinks = [
+  {
+    text: 'Home',
+    path: Routes.Home,
+  },
+  {
+    text: 'Goals',
+    path: Routes.Goals,
+  },
+  {
+    text: 'Motivation',
+    path: Routes.Motivation,
+  },
+];

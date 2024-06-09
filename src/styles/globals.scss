@@ -2,10 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background-color: darkgray;
-}
-
-.custom-title {
-  font-family: var(--font-exo);
+@layer components {
+  .general-gradient {
+    background-color: #ffffff;
+    background: linear-gradient(56deg, rgba(255, 255, 255, 0.006) 35%, rgba(0, 157, 183, 0.4) 100%);
+  }
 }
