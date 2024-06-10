@@ -47,7 +47,7 @@ export const VideoBox: React.FC<VideoBoxProps> = ({ title, boxType, videoSrc }) 
           ref={videoRef}
           muted
           loop
-          preload="metadata"
+          preload="none"
           src={videoSrc}
         />
       </div>
