@@ -9,6 +9,7 @@ interface ActionButtonProps {
   className?: string;
   icon?: React.ReactSVGElement;
   isDisabled?: boolean;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 export const ActionButton: React.FC<ActionButtonProps> = ({
@@ -18,11 +19,12 @@ export const ActionButton: React.FC<ActionButtonProps> = ({
   onClick,
   icon,
   isDisabled,
+  type = 'button',
 }) => {
   const buttonClasses = classNames(className, BUTTON_STYLES.base, BUTTON_STYLES[buttonType]);
 
   return (
-    <button className={buttonClasses} onClick={onClick} disabled={isDisabled}>
+    <button className={buttonClasses} onClick={onClick} disabled={isDisabled} type={type}>
       {icon && icon}
       <span>{text}</span>
     </button>

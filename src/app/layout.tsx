@@ -3,6 +3,7 @@ import { roboto_condensed } from '@/utils/fonts';
 import '../styles/globals.scss';
 import classNames from 'classnames';
 import { MainHeader } from '@/components/MainHeader/MainHeader';
+import { Footer } from '@/components/Footer/Footer';
 
 export const metadata: Metadata = {
   title: 'Goal reacher app',
@@ -24,6 +25,7 @@ export default function RootLayout({
       >
         <MainHeader />
         {children}
+        <Footer />
       </body>
     </html>
   );
