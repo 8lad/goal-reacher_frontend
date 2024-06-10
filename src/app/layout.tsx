@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
-import { roboto_condensed } from '@/components/shared/fonts';
+import { roboto_condensed } from '@/utils/fonts';
 import '../styles/globals.scss';
 import classNames from 'classnames';
+import { MainHeader } from '@/components/MainHeader/MainHeader';
+import { Footer } from '@/components/Footer/Footer';
 
 export const metadata: Metadata = {
   title: 'Goal reacher app',
@@ -15,7 +17,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={classNames(roboto_condensed.className)}>{children}</body>
+      <body
+        className={classNames(
+          roboto_condensed.className,
+          'general-gradient flex flex-col min-h-screen',
+        )}
+      >
+        <MainHeader />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
