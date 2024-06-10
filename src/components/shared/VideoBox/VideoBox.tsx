@@ -40,9 +40,9 @@ export const VideoBox: React.FC<VideoBoxProps> = ({ title, boxType, videoSrc }) 
       <div className={curtainBoxClassses}>
         <Title text={title} fontWeight={TextFontWeight.BOLD} className="uppercase" />
       </div>
-      <div>
+      <div className="w-full h-full">
         <video
-          className="outline-none"
+          className="outline-none w-full h-full object-cover"
           controls={false}
           ref={videoRef}
           muted

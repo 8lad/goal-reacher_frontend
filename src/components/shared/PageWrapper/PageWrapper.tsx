@@ -3,5 +3,5 @@ interface PageWrapperProps {
 }
 
 export const PageWrapper: React.FC<PageWrapperProps> = ({ children }) => {
-  return <main className="pt-[110px] grow">{children}</main>;
+  return <main className="pt-[120px] grow">{children}</main>;
 };

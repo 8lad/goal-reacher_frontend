@@ -11,7 +11,7 @@ export default function Home() {
         <Title
           text="You can reach whatever you want"
           textAlign={TextAlignType.CENTER}
-          className="mb-5"
+          className="mb-9"
         />
         <VideoShowcase />
       </ContentContainer>
