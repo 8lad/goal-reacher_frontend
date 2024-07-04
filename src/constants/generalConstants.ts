@@ -13,6 +13,7 @@ export enum Routes {
   Goals = '/goals',
   SingleGoal = '/goal',
   UserPage = '/user',
+  Signin = '/signin',
   Login = '/login',
   Motivation = '/motivation',
 }
