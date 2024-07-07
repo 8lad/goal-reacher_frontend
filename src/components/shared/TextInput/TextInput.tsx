@@ -6,6 +6,7 @@ interface TextInputProps {
   inputClasses?: string;
   labelClasses?: string;
   isDisabled?: boolean;
+  errorMessage?: string | undefined;
 }
 
 export const TextInput: React.FC<TextInputProps> = ({
@@ -14,6 +15,7 @@ export const TextInput: React.FC<TextInputProps> = ({
   labelClasses,
   register,
   isDisabled,
+  errorMessage,
 }) => {
   const labelClassList = classNames('block overflow-hidden', labelClasses);
   const inputClassList = classNames(
@@ -29,6 +31,7 @@ export const TextInput: React.FC<TextInputProps> = ({
         disabled={isDisabled}
         {...register}
       />
+      {errorMessage && <p className="w-full mt-1 text-red-600">{errorMessage}</p>}
     </label>
   );
 };
