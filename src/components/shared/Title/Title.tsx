@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { TITLE_CLASSES } from './Title.utils';
-import { exo } from '@/utils/fonts';
+import { exo } from '@/helpers/fonts';
 import { TextAlignType, TextFontWeight, TitleType } from '@/constants/generalConstants';
 
 interface TitleProps {

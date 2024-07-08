@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { useState } from 'react';
 import { HidePasswordButton } from './components/HidePasswordButton';
+import { PasswordStrength } from './components/PasswordStrength';
 
 interface PasswordInputProps {
   placeholder: string;
@@ -9,6 +10,7 @@ interface PasswordInputProps {
   labelClasses?: string;
   isDisabled?: boolean;
   errorMessage?: string;
+  inputValue?: string;
 }
 
 export const PasswordInput: React.FC<PasswordInputProps> = ({
@@ -18,6 +20,7 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
   register,
   isDisabled,
   errorMessage,
+  inputValue,
 }) => {
   const [isPassworsVisible, setIsPasswordVisible] = useState(false);
   const labelClassList = classNames('block relative overflow-hidden', labelClasses);
@@ -38,6 +41,7 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
         {...register}
       />
       <HidePasswordButton isPassworsVisible={isPassworsVisible} onClick={buttonClickHandler} />
+      {inputValue && <PasswordStrength className="mt-2" password={inputValue} />}
       {errorMessage && <p className="w-full mt-1 text-red-600">{errorMessage}</p>}
     </label>
   );

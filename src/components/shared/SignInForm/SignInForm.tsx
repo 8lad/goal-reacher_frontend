@@ -26,6 +26,7 @@ export const SignInForm: React.FC<SignInFormProps> = ({ className }) => {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm<FormSchema>({
     resolver: zodResolver(formShema),
@@ -36,6 +37,7 @@ export const SignInForm: React.FC<SignInFormProps> = ({ className }) => {
   };
   const formClasses = classNames('w-full p-[30px]', className);
   const inputStyles = 'mb-[20px] mx-auto w-2/3';
+  const passwordValue = watch('password');
 
   return (
     <FormWrapper className={formClasses} onSubmit={handleSubmit(onSubmit)}>
@@ -55,6 +57,7 @@ export const SignInForm: React.FC<SignInFormProps> = ({ className }) => {
         labelClasses={inputStyles}
         placeholder="Password"
         errorMessage={errors.password?.message}
+        inputValue={passwordValue}
         register={{ ...register('password') }}
       />
       <PasswordInput

@@ -10,7 +10,10 @@ export const formShema = z
     email: z.string().min(1, 'The email field is required').email('Invalid email address'),
     password: z
       .string({ required_error: 'The passwors field is required' })
-      .min(8, 'Password must be longer than 8 symbols'),
+      .min(
+        8,
+        'Password must be longer than 8 symbols, and contains capital letter, numbers and special symbols',
+      ),
     confirmPassword: z.string({ required_error: 'This field is required' }),
   })
   .refine((data) => data.password === data.confirmPassword, {
@@ -19,3 +22,10 @@ export const formShema = z
   });
 
 export type FormSchema = z.infer<typeof formShema>;
+
+export interface PasswordStrengthDescription {
+  text: string;
+  textColor: string;
+  backgroundColor: string;
+  score: number;
+}
