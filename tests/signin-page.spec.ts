@@ -1,6 +1,6 @@
 // import { metadata as mainPageMetaData } from '../src/app/layout';
 import { By, Builder, Key, until, WebDriver } from 'selenium-webdriver';
-const assert = require('assert');
+import * as assert from 'assert';
 
 const PAGE_URL = 'http://localhost:3200/signin';
 const SIGNIN_PAGE_TITLE = 'Sign in';
@@ -37,27 +37,32 @@ describe('Test for signin page', async () => {
 
   it('Should have name input field', async () => {
     const nameInput = await driver.findElement(By.name(inputFields.name));
-    assert(nameInput.isDisplayed());
+    const hasNameInput = await nameInput.isDisplayed();
+    assert.strictEqual(hasNameInput, true);
   });
 
   it('Should have email input field', async () => {
     const emailInput = await driver.findElement(By.name(inputFields.email));
-    assert(emailInput.isDisplayed());
+    const hasEmailInput = await emailInput.isDisplayed();
+    assert.strictEqual(hasEmailInput, true);
   });
 
   it('Should have password input field', async () => {
     const passwordInput = await driver.findElement(By.name(inputFields.password));
-    assert(passwordInput.isDisplayed());
+    const hasPasswordInput = await passwordInput.isDisplayed();
+    assert.strictEqual(hasPasswordInput, true);
   });
 
   it('Should have confirmPassword input field', async () => {
     const confirmPasswordInput = await driver.findElement(By.name(inputFields.confirmPassword));
-    assert(confirmPasswordInput.isDisplayed());
+    const hasConfirmPasswordInput = await confirmPasswordInput.isDisplayed();
+    assert.strictEqual(hasConfirmPasswordInput, true);
   });
 
   it('Should have submit button input field', async () => {
     const submitButton = await driver.findElement(By.xpath("//button[@type='submit']"));
-    assert(submitButton.isDisplayed());
+    const hasSubmitButton = await submitButton.isDisplayed();
+    assert.strictEqual(hasSubmitButton, true);
   });
 
   it('Should have three error message if click submit with empty form', async () => {

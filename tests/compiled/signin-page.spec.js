@@ -1,4 +1,27 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -9,14 +32,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// const { metadata: singinMetaData } = require('../src/app/signin/page');
-const layout_1 = require("../src/app/layout");
+// import { metadata as mainPageMetaData } from '../src/app/layout';
 const selenium_webdriver_1 = require("selenium-webdriver");
-const assert = require('assert');
+const assert = __importStar(require("assert"));
 const PAGE_URL = 'http://localhost:3200/signin';
 const SIGNIN_PAGE_TITLE = 'Sign in';
-const MAIN_PAGE_TITLE = layout_1.metadata.title;
-// const MAIN_PAGE_TITLE = 'Goal reacher app';
+// const MAIN_PAGE_TITLE = mainPageMetaData.title as string;
+const MAIN_PAGE_TITLE = 'Goal reacher app';
 const DESCRIBE_TIMEOUT = 1000;
 const AMOUNT_OF_ERROR_MESSAGE_PARAGRAPHS = 3;
 const TESTED_BROWSER = 'firefox';
@@ -42,23 +64,28 @@ describe('Test for signin page', () => __awaiter(void 0, void 0, void 0, functio
     }));
     it('Should have name input field', () => __awaiter(void 0, void 0, void 0, function* () {
         const nameInput = yield driver.findElement(selenium_webdriver_1.By.name(inputFields.name));
-        assert(nameInput.isDisplayed());
+        const hasNameInput = yield nameInput.isDisplayed();
+        assert.strictEqual(hasNameInput, true);
     }));
     it('Should have email input field', () => __awaiter(void 0, void 0, void 0, function* () {
         const emailInput = yield driver.findElement(selenium_webdriver_1.By.name(inputFields.email));
-        assert(emailInput.isDisplayed());
+        const hasEmailInput = yield emailInput.isDisplayed();
+        assert.strictEqual(hasEmailInput, true);
     }));
     it('Should have password input field', () => __awaiter(void 0, void 0, void 0, function* () {
         const passwordInput = yield driver.findElement(selenium_webdriver_1.By.name(inputFields.password));
-        assert(passwordInput.isDisplayed());
+        const hasPasswordInput = yield passwordInput.isDisplayed();
+        assert.strictEqual(hasPasswordInput, true);
     }));
     it('Should have confirmPassword input field', () => __awaiter(void 0, void 0, void 0, function* () {
         const confirmPasswordInput = yield driver.findElement(selenium_webdriver_1.By.name(inputFields.confirmPassword));
-        assert(confirmPasswordInput.isDisplayed());
+        const hasConfirmPasswordInput = yield confirmPasswordInput.isDisplayed();
+        assert.strictEqual(hasConfirmPasswordInput, true);
     }));
     it('Should have submit button input field', () => __awaiter(void 0, void 0, void 0, function* () {
         const submitButton = yield driver.findElement(selenium_webdriver_1.By.xpath("//button[@type='submit']"));
-        assert(submitButton.isDisplayed());
+        const hasSubmitButton = yield submitButton.isDisplayed();
+        assert.strictEqual(hasSubmitButton, true);
     }));
     it('Should have three error message if click submit with empty form', () => __awaiter(void 0, void 0, void 0, function* () {
         const submitButton = yield driver.findElement(selenium_webdriver_1.By.xpath("//button[@type='submit']"));
