@@ -29,6 +29,7 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
     inputClasses,
   );
   const inputType = isPassworsVisible ? 'text' : 'password';
+  const errorMessageClasses = 'w-full mt-1 text-red-600';
   const buttonClickHandler = () => setIsPasswordVisible((prevValue) => !prevValue);
 
   return (
@@ -42,7 +43,7 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
       />
       <HidePasswordButton isPassworsVisible={isPassworsVisible} onClick={buttonClickHandler} />
       {inputValue && <PasswordStrength className="mt-2" password={inputValue} />}
-      {errorMessage && <p className="w-full mt-1 text-red-600">{errorMessage}</p>}
+      {errorMessage && <p className={errorMessageClasses}>{errorMessage}</p>}
     </label>
   );
 };

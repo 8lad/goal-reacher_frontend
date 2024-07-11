@@ -37,23 +37,23 @@ export const getPasswordStrengthDescription = (score: number): PasswordStrengthD
   if (score <= LOW_PASSWORD_LEVEL) {
     return {
       text: 'Low',
-      textColor: 'text-rose-600',
-      backgroundColor: 'bg-rose-600',
+      textColor: 'rgb(225 29 72)',
+      backgroundColor: 'rgb(225 29 72)',
       score,
     };
   }
   if (score > LOW_PASSWORD_LEVEL && score <= MIDDLE_PASSWORD_LEVEL) {
     return {
       text: 'Medium',
-      textColor: 'text-yellow-600',
-      backgroundColor: 'bg-yellow-600',
+      textColor: 'rgb(202 138 4)',
+      backgroundColor: 'rgb(202 138 4)',
       score,
     };
   }
   return {
     text: 'High',
-    textColor: 'text-green-600',
-    backgroundColor: 'bg-green-600',
+    textColor: 'rgb(22 163 74)',
+    backgroundColor: 'rgb(22 163 74)',
     score,
   };
 };

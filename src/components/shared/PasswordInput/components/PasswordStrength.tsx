@@ -14,7 +14,7 @@ export const PasswordStrength: React.FC<PasswordStrengthProps> = ({ password, cl
   const mainBlockClasses = classNames('w-full', className);
   const wrapperClasses = 'grid gap-1 grid-cols-5';
   const sectionClasses = 'h-[4px]';
-  const baseSectionBackground = 'bg-gray-400';
+  const baseSectionBackground = 'rgb(156 163 175)';
   const passwordScore = getPasswordScore(password);
   const passwordStrengthOptions = getPasswordStrengthDescription(passwordScore);
 
@@ -26,10 +26,16 @@ export const PasswordStrength: React.FC<PasswordStrengthProps> = ({ password, cl
             index < passwordStrengthOptions.score
               ? passwordStrengthOptions.backgroundColor
               : baseSectionBackground;
-          return <div key={segment} className={classNames(sectionClasses, sectionBackground)} />;
+          return (
+            <div
+              key={segment}
+              style={{ backgroundColor: sectionBackground }}
+              className={sectionClasses}
+            />
+          );
         })}
       </div>
-      <p className={passwordStrengthOptions.textColor}>{passwordStrengthOptions.text}</p>
+      <p style={{ color: passwordStrengthOptions.textColor }}>{passwordStrengthOptions.text}</p>
     </div>
   );
 };

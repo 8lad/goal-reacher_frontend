@@ -3,12 +3,13 @@
 import classNames from 'classnames';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { ActionButton } from '../ActionButton/ActionButton';
-import { ButtonType } from '@/constants/generalConstants';
+import { ButtonType, Routes } from '@/constants/generalConstants';
 import { TextInput } from '../TextInput/TextInput';
 import { FormWrapper } from '../FormWrapper/FormWrapper';
 import { PasswordInput } from '../PasswordInput/PasswordInput';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormSchema, formShema } from '@/types/signInTypes';
+import { useRouter } from 'next/navigation';
 
 interface SignInFormProps {
   className?: string;
@@ -22,6 +23,7 @@ interface SigninFormInputs {
 }
 
 export const SignInForm: React.FC<SignInFormProps> = ({ className }) => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -34,6 +36,7 @@ export const SignInForm: React.FC<SignInFormProps> = ({ className }) => {
   const onSubmit: SubmitHandler<SigninFormInputs> = (data: FormSchema) => {
     console.info(data);
     reset();
+    router.push(Routes.Home);
   };
   const formClasses = classNames('w-full p-[30px]', className);
   const inputStyles = 'mb-[20px] mx-auto w-2/3';
