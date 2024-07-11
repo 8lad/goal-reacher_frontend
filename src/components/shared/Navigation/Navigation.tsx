@@ -13,6 +13,7 @@ interface NavigationProps {
 
 export const Navigation: React.FC<NavigationProps> = ({ className }) => {
   const path = usePathname();
+  const isRegistrarionPage = path === Routes.Login || path === Routes.Signin;
 
   return (
     <nav className={classNames(className)}>
@@ -20,14 +21,16 @@ export const Navigation: React.FC<NavigationProps> = ({ className }) => {
         {naviationLinks.map((link) => (
           <NavigationLink key={link.path} isActive={path === link.path} {...link} />
         ))}
-        <li>
-          <ActionLink
-            text="Sign in"
-            linkType={ButtonType.PRIMARY}
-            href={Routes.Login}
-            className="w-fit"
-          />
-        </li>
+        {!isRegistrarionPage && (
+          <li>
+            <ActionLink
+              text="Sign in"
+              linkType={ButtonType.PRIMARY}
+              href={Routes.Signin}
+              className="w-fit"
+            />
+          </li>
+        )}
       </ul>
     </nav>
   );
