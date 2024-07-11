@@ -1,14 +1,14 @@
 const assert = require('assert');
-const { By, Builder, Key, until } = require('selenium-webdriver');
+const { By, Builder, Key, until, WebDriver } = require('selenium-webdriver');
 
 const PAGE_URL = 'http://localhost:3200/signin';
-const SIGNIN_PAGE_TITLE = "Sign in";
-const MAIN_PAGE_TITLE = "Goal reacher app";
+const SIGNIN_PAGE_TITLE = 'Sign in';
+const MAIN_PAGE_TITLE = 'Goal reacher app';
 const DESCRIBE_TIMEOUT = 1000;
 const AMOUNT_OF_ERROR_MESSAGE_PARAGRAPHS = 3;
 
 describe('Test for signin page', async () => {
-  let driver;
+  let driver: typeof WebDriver;
 
   before(async () => {
     driver = await new Builder().forBrowser('firefox').build();
@@ -21,10 +21,8 @@ describe('Test for signin page', async () => {
   });
 
   it('Should have correct page title', async () => {
-
     const title = await driver.getTitle();
     assert.equal(SIGNIN_PAGE_TITLE, title);
-
   });
 
   it('Should have name input field', async () => {
@@ -55,7 +53,7 @@ describe('Test for signin page', async () => {
   it('Should have three error message if click submit with empty form', async () => {
     const submitButton = await driver.findElement(By.xpath("//button[@type='submit']"));
     await submitButton.click();
-    const allErrorMessages = await driver.findElements(By.xpath("//form//p"));
+    const allErrorMessages = await driver.findElements(By.xpath('//form//p'));
     const allErrorMessagesLength = allErrorMessages.length;
 
     assert.equal(allErrorMessagesLength, AMOUNT_OF_ERROR_MESSAGE_PARAGRAPHS);
@@ -69,7 +67,6 @@ describe('Test for signin page', async () => {
     const errorMessageText = await nameErrorMessage.getText();
 
     assert.equal(errorMessageText, 'The name shoul have at least 2 symbols');
-
   });
 
   it('Should have error message for the name input if have more than 30 letters', async () => {
@@ -79,8 +76,7 @@ describe('Test for signin page', async () => {
     const nameErrorMessage = await driver.findElement(By.xpath('//form//label[1]/p'));
     const errorMessageText = await nameErrorMessage.getText();
 
-    assert.equal(errorMessageText, 'The name can\'t be longer than 30 symbols');
-
+    assert.equal(errorMessageText, "The name can't be longer than 30 symbols");
   });
 
   it('Should have error if email is invalid', async () => {
@@ -100,10 +96,13 @@ describe('Test for signin page', async () => {
     const passwordErrorMessage = await driver.findElement(By.xpath('//form//label[3]/p'));
     const errorMessageText = await passwordErrorMessage.getText();
 
-    assert.equal(errorMessageText, 'Password must be longer than 8 symbols, and contains capital letter, numbers and special symbols');
+    assert.equal(
+      errorMessageText,
+      'Password must be longer than 8 symbols, and contains capital letter, numbers and special symbols',
+    );
   });
 
-  it('Should have error if passwords doesn\'t match', async () => {
+  it("Should have error if passwords doesn't match", async () => {
     const passwordInput = await driver.findElement(By.name('password'));
     await passwordInput.sendKeys('aaaaaaaaaa');
 
@@ -127,7 +126,6 @@ describe('Test for signin page', async () => {
 
     assert.equal(passwordInputTypeText, 'text');
     assert.equal(passwordInputTypePassword, 'password');
-
   });
 
   it('Should change input type for the confirm password input after click on the visibility button', async () => {
@@ -141,7 +139,6 @@ describe('Test for signin page', async () => {
 
     assert.equal(passwordInputTypeText, 'text');
     assert.equal(passwordInputTypePassword, 'password');
-
   });
 
   it('Should redirect after the form is completed successfully', async () => {
@@ -170,5 +167,4 @@ describe('Test for signin page', async () => {
     const title = await driver.getTitle();
     assert.strictEqual(MAIN_PAGE_TITLE, title);
   });
-
 });
