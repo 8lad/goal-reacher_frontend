@@ -4,7 +4,7 @@ import * as assert from 'assert';
 import { dictionary } from '@/constants/dictionary';
 
 const PAGE_URL = `${process.env.BASE_URL}${Routes.Signin}`;
-const SIGNIN_PAGE_TITLE = dictionary.EN.PAGES.SIGN_IN.METADATA.TITLE;
+const SIGNIN_PAGE_DATA = { ...dictionary.EN.PAGES.SIGN_IN };
 const MAIN_PAGE_TITLE = dictionary.EN.PAGES.HOME.METADATA.TITLE;
 const TESTED_BROWSER = 'firefox';
 
@@ -49,7 +49,7 @@ describe('Test for signin page', () => {
 
   it('Should have correct page title', async () => {
     const title = await driver.getTitle();
-    assert.equal(SIGNIN_PAGE_TITLE, title);
+    assert.equal(SIGNIN_PAGE_DATA.METADATA.TITLE, title);
   });
 
   it('Should have name input field', async () => {
@@ -98,7 +98,7 @@ describe('Test for signin page', () => {
     const nameErrorMessage = await driver.findElement(By.xpath('//form//label[1]/p'));
     const errorMessageText = await nameErrorMessage.getText();
 
-    assert.equal(errorMessageText, 'The name should have at least 2 symbols');
+    assert.equal(errorMessageText, SIGNIN_PAGE_DATA.FORM.ERROR_MESSAGES.NAME.SHORT_NAME);
   });
 
   it('Should have error message for the name input if have more than 30 letters', async () => {
@@ -108,7 +108,7 @@ describe('Test for signin page', () => {
     const nameErrorMessage = await driver.findElement(By.xpath('//form//label[1]/p'));
     const errorMessageText = await nameErrorMessage.getText();
 
-    assert.equal(errorMessageText, "The name can't be longer than 30 symbols");
+    assert.equal(errorMessageText, SIGNIN_PAGE_DATA.FORM.ERROR_MESSAGES.NAME.LONG_NAME);
   });
 
   it('Should have error if email is invalid', async () => {
@@ -118,7 +118,7 @@ describe('Test for signin page', () => {
     const emailErrorMessage = await driver.findElement(By.xpath('//form//label[2]/p'));
     const errorMessageText = await emailErrorMessage.getText();
 
-    assert.equal(errorMessageText, 'Invalid email address');
+    assert.equal(errorMessageText, SIGNIN_PAGE_DATA.FORM.ERROR_MESSAGES.EMAIL.INVALID_EMAIL);
   });
 
   it('Should have error if password is less than 8 symbols', async () => {
@@ -128,10 +128,7 @@ describe('Test for signin page', () => {
     const passwordErrorMessage = await driver.findElement(By.xpath('//form//label[3]/p'));
     const errorMessageText = await passwordErrorMessage.getText();
 
-    assert.equal(
-      errorMessageText,
-      'Password must be longer than 8 symbols, and contains capital letter, numbers and special symbols',
-    );
+    assert.equal(errorMessageText, SIGNIN_PAGE_DATA.FORM.ERROR_MESSAGES.PASSWORD.INVALID_PASSWORD);
   });
 
   it("Should have error if passwords doesn't match", async () => {
@@ -144,7 +141,10 @@ describe('Test for signin page', () => {
     const passwordErrorMessage = await driver.findElement(By.xpath('//form//label[4]/p'));
     const errorMessageText = await passwordErrorMessage.getText();
 
-    assert.equal(errorMessageText, 'Passwords must match');
+    assert.equal(
+      errorMessageText,
+      SIGNIN_PAGE_DATA.FORM.ERROR_MESSAGES.CONFIRM_PASSWORD.INVALID_CONFIRM,
+    );
   });
 
   it('Should change input type for the password input after click on the visibility button', async () => {
