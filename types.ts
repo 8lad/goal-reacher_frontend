@@ -2,5 +2,6 @@
 declare namespace NodeJS {
   export interface ProcessEnv {
     BASE_ENDPOINT: string;
+    BASE_URL: string;
   }
 }

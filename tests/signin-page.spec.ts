@@ -1,8 +1,9 @@
 // import { metadata as mainPageMetaData } from '../src/app/layout';
 import { By, Builder, Key, until, WebDriver } from 'selenium-webdriver';
 import * as assert from 'assert';
+import 'dotenv/config';
 
-const PAGE_URL = 'http://localhost:3200/signin';
+const PAGE_URL = `${process.env.BASE_URL}/signin`;
 const SIGNIN_PAGE_TITLE = 'Sign in';
 // const MAIN_PAGE_TITLE = mainPageMetaData.title as string;
 const MAIN_PAGE_TITLE = 'Goal reacher app';
