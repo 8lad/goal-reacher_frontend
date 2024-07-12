@@ -4,10 +4,11 @@ import '../styles/globals.scss';
 import classNames from 'classnames';
 import { MainHeader } from '@/components/MainHeader/MainHeader';
 import { Footer } from '@/components/Footer/Footer';
+import { dictionary } from '@/constants/dictionary';
 
 export const metadata: Metadata = {
-  title: 'Goal reacher app',
-  description: 'This application will help you reach all your goals. Be sure',
+  title: dictionary.EN.PAGES.HOME.METADATA.TITLE,
+  description: dictionary.EN.PAGES.HOME.METADATA.DESCRIPTION,
 };
 
 export default function RootLayout({

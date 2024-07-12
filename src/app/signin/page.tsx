@@ -2,12 +2,13 @@ import { ContentContainer } from '@/components/shared/ContentContainer/ContentCo
 import { PageWrapper } from '@/components/shared/PageWrapper/PageWrapper';
 import { SignInForm } from '@/components/shared/SignInForm/SignInForm';
 import { Title } from '@/components/shared/Title/Title';
+import { dictionary } from '@/constants/dictionary';
 import { TextAlignType } from '@/constants/generalConstants';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Sign in',
-  description: 'Here you can create your account',
+  title: dictionary.EN.PAGES.SIGN_IN.METADATA.TITLE,
+  description: dictionary.EN.PAGES.SIGN_IN.METADATA.DESCRIPTION,
 };
 
 export default function SigninPage() {
