@@ -9,7 +9,7 @@
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "prepare": "husky",
-    "test:full": "next build && concurrently \"yarn start\" \"yarn mocha-test:full\"",
+    "test:mocha": "next build && concurrently \"yarn start\" \"yarn mocha-test:full\"",
     "mocha-test": "mocha -r ts-node/register tests/compiled**/*.js  --no-timeouts",
     "mocha-test:full": "tsc -p tests/tsconfig.tests.json && sleep 5 && mocha 'tests/compiled/**/*.js' --no-timeouts"
   },

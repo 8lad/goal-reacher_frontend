@@ -1,11 +1,9 @@
-// import { metadata as mainPageMetaData } from '../src/app/layout';
 import { By, Builder, Key, until, WebDriver } from 'selenium-webdriver';
 import * as assert from 'assert';
 import 'dotenv/config';
 
 const PAGE_URL = `${process.env.BASE_URL}/signin`;
 const SIGNIN_PAGE_TITLE = 'Sign in';
-// const MAIN_PAGE_TITLE = mainPageMetaData.title as string;
 const MAIN_PAGE_TITLE = 'Goal reacher app';
 const DESCRIBE_TIMEOUT = 1000;
 const AMOUNT_OF_ERROR_MESSAGE_PARAGRAPHS = 3;

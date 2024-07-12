@@ -32,14 +32,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// import { metadata as mainPageMetaData } from '../src/app/layout';
 const selenium_webdriver_1 = require("selenium-webdriver");
 const assert = __importStar(require("assert"));
 require("dotenv/config");
 const PAGE_URL = `${process.env.BASE_URL}/signin`;
-// const PAGE_URL = 'http://localhost:3200/signin';
 const SIGNIN_PAGE_TITLE = 'Sign in';
-// const MAIN_PAGE_TITLE = mainPageMetaData.title as string;
 const MAIN_PAGE_TITLE = 'Goal reacher app';
 const DESCRIBE_TIMEOUT = 1000;
 const AMOUNT_OF_ERROR_MESSAGE_PARAGRAPHS = 3;
