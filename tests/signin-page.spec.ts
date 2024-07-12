@@ -1,17 +1,26 @@
-const assert = require('assert');
-const { By, Builder, Key, until, WebDriver } = require('selenium-webdriver');
+import { By, Builder, Key, until, WebDriver } from 'selenium-webdriver';
+import * as assert from 'assert';
+import 'dotenv/config';
 
-const PAGE_URL = 'http://localhost:3200/signin';
+const PAGE_URL = `${process.env.BASE_URL}/signin`;
 const SIGNIN_PAGE_TITLE = 'Sign in';
 const MAIN_PAGE_TITLE = 'Goal reacher app';
 const DESCRIBE_TIMEOUT = 1000;
 const AMOUNT_OF_ERROR_MESSAGE_PARAGRAPHS = 3;
+const TESTED_BROWSER = 'firefox';
+
+const inputFields = {
+  name: 'name',
+  email: 'email',
+  password: 'password',
+  confirmPassword: 'confirmPassword',
+};
 
 describe('Test for signin page', async () => {
-  let driver: typeof WebDriver;
+  let driver: WebDriver;
 
   before(async () => {
-    driver = await new Builder().forBrowser('firefox').build();
+    driver = await new Builder().forBrowser(TESTED_BROWSER).build();
     await driver.manage().setTimeouts({ implicit: DESCRIBE_TIMEOUT });
     await driver.get(PAGE_URL);
   });
@@ -26,28 +35,33 @@ describe('Test for signin page', async () => {
   });
 
   it('Should have name input field', async () => {
-    const nameInput = await driver.findElement(By.name('name'));
-    assert(nameInput.isDisplayed());
+    const nameInput = await driver.findElement(By.name(inputFields.name));
+    const hasNameInput = await nameInput.isDisplayed();
+    assert.strictEqual(hasNameInput, true);
   });
 
   it('Should have email input field', async () => {
-    const emailInput = await driver.findElement(By.name('email'));
-    assert(emailInput.isDisplayed());
+    const emailInput = await driver.findElement(By.name(inputFields.email));
+    const hasEmailInput = await emailInput.isDisplayed();
+    assert.strictEqual(hasEmailInput, true);
   });
 
   it('Should have password input field', async () => {
-    const passwordInput = await driver.findElement(By.name('password'));
-    assert(passwordInput.isDisplayed());
+    const passwordInput = await driver.findElement(By.name(inputFields.password));
+    const hasPasswordInput = await passwordInput.isDisplayed();
+    assert.strictEqual(hasPasswordInput, true);
   });
 
   it('Should have confirmPassword input field', async () => {
-    const confirmPasswordInput = await driver.findElement(By.name('confirmPassword'));
-    assert(confirmPasswordInput.isDisplayed());
+    const confirmPasswordInput = await driver.findElement(By.name(inputFields.confirmPassword));
+    const hasConfirmPasswordInput = await confirmPasswordInput.isDisplayed();
+    assert.strictEqual(hasConfirmPasswordInput, true);
   });
 
   it('Should have submit button input field', async () => {
     const submitButton = await driver.findElement(By.xpath("//button[@type='submit']"));
-    assert(submitButton.isDisplayed());
+    const hasSubmitButton = await submitButton.isDisplayed();
+    assert.strictEqual(hasSubmitButton, true);
   });
 
   it('Should have three error message if click submit with empty form', async () => {
@@ -60,7 +74,7 @@ describe('Test for signin page', async () => {
   });
 
   it('Should have error message for the name input if have less than 2 letters', async () => {
-    const nameInput = await driver.findElement(By.name('name'));
+    const nameInput = await driver.findElement(By.name(inputFields.name));
     await nameInput.sendKeys('s', Key.ENTER);
 
     const nameErrorMessage = await driver.findElement(By.xpath('//form//label[1]/p'));
@@ -70,7 +84,7 @@ describe('Test for signin page', async () => {
   });
 
   it('Should have error message for the name input if have more than 30 letters', async () => {
-    const nameInput = await driver.findElement(By.name('name'));
+    const nameInput = await driver.findElement(By.name(inputFields.name));
     await nameInput.sendKeys('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', Key.ENTER);
 
     const nameErrorMessage = await driver.findElement(By.xpath('//form//label[1]/p'));
@@ -80,7 +94,7 @@ describe('Test for signin page', async () => {
   });
 
   it('Should have error if email is invalid', async () => {
-    const emailInput = await driver.findElement(By.name('email'));
+    const emailInput = await driver.findElement(By.name(inputFields.email));
     await emailInput.sendKeys('aaaaaaa', Key.ENTER);
 
     const emailErrorMessage = await driver.findElement(By.xpath('//form//label[2]/p'));
@@ -90,7 +104,7 @@ describe('Test for signin page', async () => {
   });
 
   it('Should have error if password is less than 8 symbols', async () => {
-    const passwordInput = await driver.findElement(By.name('password'));
+    const passwordInput = await driver.findElement(By.name(inputFields.password));
     await passwordInput.sendKeys('aaaaaaa', Key.ENTER);
 
     const passwordErrorMessage = await driver.findElement(By.xpath('//form//label[3]/p'));
@@ -103,10 +117,10 @@ describe('Test for signin page', async () => {
   });
 
   it("Should have error if passwords doesn't match", async () => {
-    const passwordInput = await driver.findElement(By.name('password'));
+    const passwordInput = await driver.findElement(By.name(inputFields.password));
     await passwordInput.sendKeys('aaaaaaaaaa');
 
-    const confirmPassword = await driver.findElement(By.name('confirmPassword'));
+    const confirmPassword = await driver.findElement(By.name(inputFields.confirmPassword));
     await confirmPassword.sendKeys('bbbbbbbbbb', Key.ENTER);
 
     const passwordErrorMessage = await driver.findElement(By.xpath('//form//label[4]/p'));
@@ -116,7 +130,7 @@ describe('Test for signin page', async () => {
   });
 
   it('Should change input type for the password input after click on the visibility button', async () => {
-    const passwordInput = await driver.findElement(By.name('password'));
+    const passwordInput = await driver.findElement(By.name(inputFields.password));
     const passwordInputTypePassword = await passwordInput.getAttribute('type');
 
     const passwordVisibilityButton = await driver.findElement(By.xpath('//form//label[3]/button'));
@@ -129,7 +143,7 @@ describe('Test for signin page', async () => {
   });
 
   it('Should change input type for the confirm password input after click on the visibility button', async () => {
-    const confirmPasswordInput = await driver.findElement(By.name('confirmPassword'));
+    const confirmPasswordInput = await driver.findElement(By.name(inputFields.confirmPassword));
     const passwordInputTypePassword = await confirmPasswordInput.getAttribute('type');
 
     const passwordVisibilityButton = await driver.findElement(By.xpath('//form//label[4]/button'));
@@ -148,16 +162,16 @@ describe('Test for signin page', async () => {
       input.clear();
     }
 
-    const nameInput = await driver.findElement(By.name('name'));
+    const nameInput = await driver.findElement(By.name(inputFields.name));
     await nameInput.sendKeys('Andry');
 
-    const emailInput = await driver.findElement(By.name('email'));
+    const emailInput = await driver.findElement(By.name(inputFields.email));
     await emailInput.sendKeys('test@gmail.com');
 
-    const passwordInput = await driver.findElement(By.name('password'));
+    const passwordInput = await driver.findElement(By.name(inputFields.password));
     await passwordInput.sendKeys('12345qwertyQWERT+');
 
-    const confirmPassword = await driver.findElement(By.name('confirmPassword'));
+    const confirmPassword = await driver.findElement(By.name(inputFields.confirmPassword));
     await confirmPassword.sendKeys('12345qwertyQWERT+');
 
     const submitButton = await driver.findElement(By.xpath("//button[@type='submit']"));
