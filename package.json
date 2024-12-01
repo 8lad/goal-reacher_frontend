@@ -12,7 +12,8 @@
     "test:jest": "next build && concurrently \"yarn start\" \"yarn jest-test:full\"",
     "test:mocha": "next build && concurrently \"yarn start\" \"yarn mocha-test:full\"",
     "mocha-test:full": "tsc -p mocha-tests/tsconfig.tests.json && sleep 5 && mocha 'mocha-tests/compiled/**/*.js' --no-timeouts",
-    "jest-test:full": "sleep 5 && jest"
+    "jest-test:full": "sleep 5 && jest",
+    "cy:open": "cypress open"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.7.0",
@@ -36,6 +37,7 @@
     "@types/selenium-webdriver": "^4.1.24",
     "@typescript-eslint/eslint-plugin": "^7.11.0",
     "concurrently": "^8.2.2",
+    "cypress": "13.16.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
     "eslint-config-prettier": "^9.1.0",
